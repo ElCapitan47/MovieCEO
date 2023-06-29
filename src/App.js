@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
-
+import Home from "./Home";
+import SearchResults from "./SearchResults";
+import Details from "./Details";
+import Navbar from "./Navbar";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Watchlist from "./Watchlist";
+import About from "./About";
+//npx json-server --watch data/db.json --port 8000
+//npm start
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+        <div className="App">
+          <Navbar/>
+           <Switch>
+            <Route exact path='/'>
+              <Home/>
+            </Route>
+            <Route exact path='/SearchResults/:entry'>
+              <SearchResults/>
+            </Route>
+            <Route exact path='/Details/:id'>
+              <Details/>
+            </Route>
+            <Route exact path='/Watchlist'>
+              <Watchlist/>
+            </Route>
+            <Route exact path='/About'>
+              <About/>
+            </Route>
+           </Switch>
+        </div>
+    </Router>
+    
   );
 }
 
